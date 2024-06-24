@@ -1,6 +1,5 @@
 import axios from "axios";
 //import { ENV__BREATHANALYZER } from 'config/environment.develop';
-import uuid from "react-uuid";
 
 // Assuming environment variables are set for these values
 export const BASE_URL = "https://www.themealdb.com/api";

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import useGetMealList from "../lib/api/hooks/useGetMealList";
-// import { Heart } from "lucide-react";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Menu() {

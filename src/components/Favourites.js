@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Heart } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";

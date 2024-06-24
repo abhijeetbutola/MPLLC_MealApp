@@ -21,7 +21,7 @@ function Category() {
   useEffect(() => {
     if (data?.meals?.length > 0 && menuListData.length <= 0)
       setMenuListData(data.meals);
-  }, [data]);
+  }, [data, menuListData.length]);
 
   console.log("Category", menuListData);
   console.log("fav", favSelector);
