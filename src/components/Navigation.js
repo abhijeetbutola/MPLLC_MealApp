@@ -13,9 +13,9 @@ function Navigation() {
 
   return (
     <>
-      <div style={{ height: "100vh" }}>
+      <div style={{ height: "100vh", width: "30px" }}>
         <IconContext.Provider value={{ color: "#fff" }}>
-          <div style={{ position: "fixed" }} className="navbar">
+          <div style={{ position: "fixed", height: "100%" }} className="navbar">
             <Link to="#" className="menu-bars">
               <FaIcons.FaBars
                 style={{ color: "black" }}

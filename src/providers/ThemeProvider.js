@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const lightTheme = {
   // Define your light theme colors, fonts, etc.
   colours: {
-    primaryBrown: "rgb(129 83 13 / 45%)",
+    primaryBrown: "rgb(129 83 13 / 30%)",
     secondaryBrown: "rgb(129 83 13 / 65%)",
     primaryRed: "rgb(204 5 5 / 100%)",
   },

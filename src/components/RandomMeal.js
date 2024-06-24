@@ -61,6 +61,7 @@ function RandomMeal() {
                   padding: "4px",
                   border: `solid ${theme.colours.primaryBrown} 2px`,
                   borderRadius: "8px",
+                  maxWidth: "262px",
                 }}
               >
                 <img
