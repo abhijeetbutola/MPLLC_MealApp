@@ -12,6 +12,7 @@ import Homepage from "./components/Homepage";
 import Category from "./components/Category";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const router = createBrowserRouter([
   {
@@ -49,9 +50,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <ThemeProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

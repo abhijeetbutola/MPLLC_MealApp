@@ -25,66 +25,65 @@ function Menu() {
   };
 
   return (
-    <div
-      style={{
-        marginTop: "50px",
-        // width: "fit-content",
-        marginInline: "auto",
-        display: "grid",
-        gridTemplateColumns: "auto auto auto",
-        gap: "10px",
-      }}
-    >
-      {menuListData?.length > 0
-        ? menuListData.map(({ strCategory }, index) => (
-            // <div
-            //   key={idCategory}
-            //   style={{
-            //     display: "flex",
-            //     alignItems: "center",
-            //     gap: "6px",
-            //     // width: "auto",
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <div style={{ width: "100%", textAlign: "center" }}>
+          <h3>Category Menu</h3>
+        </div>
+        <div
+          style={{
+            marginTop: "50px",
+            // width: "fit-content",
+            marginInline: "auto",
+            display: "grid",
+            gridTemplateColumns: "auto auto auto",
+            gap: "10px",
+            marginBottom: "50px",
+          }}
+          className="menu-item"
+        >
+          {menuListData?.length > 0
+            ? menuListData.map(
+                ({ idCategory, strCategory, strCategoryThumb }) => (
+                  <div
+                    key={idCategory}
+                    style={{
+                      marginTop: "20px",
+                      backgroundColor: "rgb(129 83 13 / 30%)",
+                      border: "solid rgb(129 83 13 / 50%) 2px",
+                      width: "150px",
+                      borderRadius: "4px",
 
-            //     padding: "10px",
-            //   }}
-            // >
-            <div
-              key={index}
-              className="menu-item"
-              style={{
-                marginTop: "20px",
-                // padding: "4px",
-                border: "solid black 2px",
-                width: "200px",
-                borderRadius: "8px",
-                // maxHeight: "300px",
-                // overflowY: "auto",
-                cursor: "pointer",
-              }}
-              onClick={() => handleRouting(strCategory)}
-            >
-              {/* <div style={{ display: "flex" }}> */}
-              {/* <div> */}
-              {/* <img
-                        src={strCategoryThumb}
-                        alt={strCategory}
-                        height={50}
-                        width={50}
-                      /> */}
-              {/* </div> */}
-              <div style={{ padding: "6px" }}>
-                <span style={{ fontWeight: "bold" }}>{strCategory}</span>
-                {/* <div style={{ overflowY: "auto" }}> */}
-                {/* <p>{strCategoryDescription}</p> */}
-                {/* </div> */}
-              </div>
-              {/* </div> */}
-              {/* </div> */}
-              {/* <Heart color="red" fill="red" /> */}
-            </div>
-          ))
-        : null}
-    </div>
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleRouting(strCategory)}
+                  >
+                    <div
+                      style={{
+                        padding: "6px",
+                        height: "100%",
+                        justifyContent: "center",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {strCategory}
+                    </div>
+                  </div>
+                )
+              )
+            : null}
+        </div>
+      </div>
+    </>
   );
 }
 

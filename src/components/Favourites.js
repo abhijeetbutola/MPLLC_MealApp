@@ -3,10 +3,12 @@ import { Heart } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setFavourite } from "../store/slices/favouritesSlice";
+import { useTheme } from "../providers/ThemeProvider";
 
 function Favourites() {
   const favSelector = useSelector((state) => state.favourites.value);
   const dispatch = useDispatch();
+  const { theme } = useTheme();
 
   const handleHeartClick = (value, ifFav) => {
     if (ifFav) {
@@ -27,7 +29,22 @@ function Favourites() {
     });
   };
 
-  if (!favSelector.length) return <p>No Favourites</p>;
+  if (!favSelector.length)
+    return (
+      <div
+        style={{
+          width: "100%",
+          textAlign: "center",
+          height: "100vh",
+          justifyContent: "center",
+          display: "flex",
+          alignItems: "center",
+          // display: "flex",
+        }}
+      >
+        <p>No Favourites Yet :(</p>
+      </div>
+    );
 
   return (
     <div
@@ -43,11 +60,14 @@ function Favourites() {
                 style={{
                   marginTop: "20px",
                   padding: "4px",
-                  border: "solid black 2px",
+                  border: `2px solid ${theme.colours.primaryBrown}`,
                   width: "600px",
                   borderRadius: "8px",
                   maxHeight: "300px",
                   overflowY: "auto",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
                 <div style={{ display: "flex" }}>
@@ -61,22 +81,19 @@ function Favourites() {
                   </div>
                   <div>
                     <span style={{ fontWeight: "bold" }}>{strMeal}</span>
-                    {/* <div style={{ overflowY: "auto" }}> */}
-                    {/* <p>{strCategoryDescription}</p> */}
-                    {/* </div> */}
                   </div>
                 </div>
+                <Heart
+                  color="red"
+                  fill={isFav(idMeal) ? "red" : "white"}
+                  onClick={() =>
+                    handleHeartClick(
+                      { idMeal, strMeal, strMealThumb },
+                      isFav(idMeal)
+                    )
+                  }
+                />
               </div>
-              <Heart
-                color="red"
-                fill={isFav(idMeal) ? "red" : "white"}
-                onClick={() =>
-                  handleHeartClick(
-                    { idMeal, strMeal, strMealThumb },
-                    isFav(idMeal)
-                  )
-                }
-              />
             </div>
           ))
         : null}

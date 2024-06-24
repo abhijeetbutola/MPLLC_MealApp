@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
-import useGetCategoryMeals from "../lib/api/hooks/useGetCategoryMeals";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setFavourite } from "../store/slices/favouritesSlice";
 import useGetRandomMeals from "../lib/api/hooks/useGetRandomMeal";
 import Button from "./atoms/Button";
+import { useTheme } from "../providers/ThemeProvider";
 
 function RandomMeal() {
   const [menuListData, setMenuListData] = useState([]);
@@ -16,6 +16,8 @@ function RandomMeal() {
   console.log("category", category);
   const favSelector = useSelector((state) => state.favourites.value);
   const dispatch = useDispatch();
+  const { theme } = useTheme();
+
   useEffect(() => {
     if (data?.meals?.length > 0) setMenuListData(data.meals);
   }, [data]);
@@ -57,15 +59,15 @@ function RandomMeal() {
                 style={{
                   marginTop: "20px",
                   padding: "4px",
-                  border: "solid black 2px",
+                  border: `solid ${theme.colours.primaryBrown} 2px`,
                   borderRadius: "8px",
                 }}
               >
                 <img
                   src={strMealThumb}
                   alt={strMeal}
-                  height={400}
-                  width={400}
+                  height={250}
+                  width={250}
                 />
                 <div style={{ display: "flex" }}>
                   <div>
@@ -114,7 +116,15 @@ function RandomMeal() {
           ))
         : null}
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button style={{ marginTop: "30px" }} onClick={refetch}>
+        <Button
+          className="menu-item"
+          style={{
+            marginTop: "30px",
+            backgroundColor: `${theme.colours.primaryBrown}`,
+            border: `solid ${theme.colours.primaryBrown} 2px`,
+          }}
+          onClick={refetch}
+        >
           Generate
         </Button>
       </div>

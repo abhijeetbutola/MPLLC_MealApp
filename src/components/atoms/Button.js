@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Button({ onClick, disabled = false, style, children }) {
+function Button({ onClick, disabled = false, className, style, children }) {
   return (
     <button
+      className={className}
       style={{
         fontSize: "16px",
         padding: "8px 16px",

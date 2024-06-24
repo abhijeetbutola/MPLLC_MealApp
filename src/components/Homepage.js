@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./atoms/Button";
+import Logo from "../assets/Logo";
+import { useTheme } from "../providers/ThemeProvider";
 
 function Homepage() {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const handleNavigate = (url) => {
     navigate(url);
@@ -10,35 +13,88 @@ function Homepage() {
 
   return (
     <>
-      <div style={{ flex: "1" }}>
-        <div style={{ textAlign: "center" }}>
-          <h3 style={{ fontSize: "40px" }}>Home Page</h3>
+      <div style={{ flex: "1", marginTop: "100px" }}>
+        <div style={{ width: "fit-content", margin: "auto" }}>
+          <Logo />
+        </div>
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <h3
+            style={{
+              fontSize: "40px",
+              color: `${theme.colours.secondaryBrown}`,
+            }}
+          >
+            Home Page
+          </h3>
         </div>
         <div
           style={{
-            display: "flex",
             justifyContent: "center",
           }}
         >
           <div
             style={{
-              height: "400px",
-              width: "250px",
               alignItems: "center",
               justifyContent: "center",
               display: "flex",
               flexWrap: "wrap",
-              gap: "10px",
-              border: "solid green 0px",
+              gap: "40px",
+              marginTop: "60px",
             }}
           >
-            <Button onClick={() => handleNavigate("/menu")}>Menu</Button>
+            <Button
+              className="menu-item"
+              style={{
+                marginTop: "20px",
+                backgroundColor: `${theme.colours.primaryBrown}`,
+                border: `solid ${theme.colours.primaryBrown} 2px`,
+                width: "150px",
+                borderRadius: "4px",
 
-            <Button onClick={() => handleNavigate("/favourites")}>
-              Favourites
+                cursor: "pointer",
+              }}
+              onClick={() => handleNavigate("/menu")}
+            >
+              Menu
             </Button>
 
-            <Button onClick={() => handleNavigate("/randommeal")}>
+            <Button
+              className="menu-item"
+              style={{
+                marginTop: "20px",
+                backgroundColor: `${theme.colours.primaryBrown}`,
+                border: `solid ${theme.colours.primaryBrown} 2px`,
+                width: "150px",
+                borderRadius: "4px",
+
+                cursor: "pointer",
+              }}
+              onClick={() => handleNavigate("/favourites")}
+            >
+              Favourites
+            </Button>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              display: "flex",
+              marginTop: "15px",
+            }}
+          >
+            <Button
+              className="menu-item"
+              style={{
+                marginTop: "20px",
+                backgroundColor: `${theme.colours.primaryBrown}`,
+                border: `solid ${theme.colours.primaryBrown} 2px`,
+                width: "150px",
+                borderRadius: "4px",
+
+                cursor: "pointer",
+              }}
+              onClick={() => handleNavigate("/randommeal")}
+            >
               Random Meal
             </Button>
           </div>

@@ -14,12 +14,12 @@ function Navigation() {
 
   return (
     <>
-      <div>
+      <div style={{ height: "100vh" }}>
         <IconContext.Provider value={{ color: "#fff" }}>
-          <div className="navbar">
+          <div style={{ position: "fixed" }} className="navbar">
             <Link to="#" className="menu-bars">
               <FaIcons.FaBars
-                style={{ color: "black", cursor: "pointer" }}
+                style={{ color: "black" }}
                 onClick={showSidebar}
               />
             </Link>
@@ -34,7 +34,7 @@ function Navigation() {
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
                       {item.icon}
-                      <span>{item.title}</span>
+                      <span className="nav-item">{item.title}</span>
                     </Link>
                   </li>
                 );

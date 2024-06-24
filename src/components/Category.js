@@ -5,6 +5,8 @@ import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setFavourite } from "../store/slices/favouritesSlice";
+import Loader from "./atoms/Loader";
+import { useTheme } from "../providers/ThemeProvider";
 
 function Category() {
   const [menuListData, setMenuListData] = useState([]);
@@ -14,6 +16,8 @@ function Category() {
   console.log("category", category);
   const favSelector = useSelector((state) => state.favourites.value);
   const dispatch = useDispatch();
+  const { theme } = useTheme();
+
   useEffect(() => {
     if (data?.meals?.length > 0 && menuListData.length <= 0)
       setMenuListData(data.meals);
@@ -41,7 +45,14 @@ function Category() {
     });
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div style={{ margin: "auto", width: "fit-content" }}>
+        <p>
+          <Loader scale={5} color={theme.colours.primaryBrown} />
+        </p>
+      </div>
+    );
 
   if (!menuListData.length) return <p>No Meals</p>;
 
@@ -49,7 +60,9 @@ function Category() {
     <div
       style={{ marginTop: "50px", width: "fit-content", marginInline: "auto" }}
     >
-      {menuListData?.length > 0
+      {isLoading
+        ? Loader
+        : menuListData?.length > 0
         ? menuListData.map(({ idMeal, strMeal, strMealThumb }) => (
             <div
               key={idMeal}
@@ -58,15 +71,18 @@ function Category() {
               <div
                 style={{
                   marginTop: "20px",
-                  border: "solid black 2px",
+                  border: `2px solid ${theme.colours.primaryBrown}`,
+                  borderRadius: "4px",
                   padding: "6px",
                   width: "500px",
-                  //   maxWidth: "500px",
-                  borderRadius: "8px",
                   maxHeight: "300px",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{ display: "flex", alignItems: "center", flex: "1" }}
+                >
                   <div>
                     <img
                       src={strMealThumb}
@@ -84,17 +100,19 @@ function Category() {
                     {/* </div> */}
                   </div>
                 </div>
+                {/* <div style={{ display: "flex", justifyContent: "end" }}> */}
+                <Heart
+                  color={theme.colours.primaryRed}
+                  fill={isFav(idMeal) ? theme.colours.primaryRed : "white"}
+                  onClick={() =>
+                    handleHeartClick(
+                      { idMeal, strMeal, strMealThumb },
+                      isFav(idMeal)
+                    )
+                  }
+                />
+                {/* </div> */}
               </div>
-              <Heart
-                color="red"
-                fill={isFav(idMeal) ? "red" : "white"}
-                onClick={() =>
-                  handleHeartClick(
-                    { idMeal, strMeal, strMealThumb },
-                    isFav(idMeal)
-                  )
-                }
-              />
             </div>
           ))
         : null}

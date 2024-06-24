@@ -32,6 +32,6 @@ export const NavigationData = [
     title: "About Me",
     path: "/aboutme",
     icon: <FaIcons.FaUser />,
-    cName: "nav-text",
+    cName: "nav-text mt-auto",
   },
 ];
